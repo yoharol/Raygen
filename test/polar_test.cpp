@@ -1,7 +1,8 @@
+#include <Raygen/Math/math.h>
+#include <Raygen/Math/random.h>
+
 #include <iostream>
 #include <random>
-#include "raygen_math.h"
-#include "raygen_random.h"
 
 int main() {
   float x, y, z;

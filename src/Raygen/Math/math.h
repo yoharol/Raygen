@@ -1,5 +1,5 @@
-#ifndef RAYGEN_MATH_
-#define RAYGEN_MATH_
+#ifndef RAYGEN_MATH_RAYGEN_MATH_
+#define RAYGEN_MATH_RAYGEN_MATH_
 
 #include <raylib.h>
 #include <Eigen/Core>
@@ -87,4 +87,4 @@ inline Eigen::Vector3f Vector3FromPolar(float phi, float theta) {
 
 }  // namespace Raygen
 
-#endif  // RAYGEN_MATH_
+#endif  // RAYGEN_MATH_RAYGEN_MATH_

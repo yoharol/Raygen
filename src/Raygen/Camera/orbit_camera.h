@@ -1,10 +1,11 @@
-#ifndef RAYGEN_ORBIT_CAMERA_H_
-#define RAYGEN_ORBIT_CAMERA_H_
+#ifndef RAYGEN_CAMERA_ORBIT_CAMERA_H_
+#define RAYGEN_CAMERA_ORBIT_CAMERA_H_
 
 #include <raylib.h>
 #include <Eigen/Core>
 #include <memory>
-#include "raygen_math.h"
+#include "../Math/math.h"
+
 namespace Raygen {
 
 class OrbitCameraControl {
@@ -44,4 +45,4 @@ class OrbitCameraControl {
 
 }  // namespace Raygen
 
-#endif  // RAYGEN_ORBIT_CAMERA_H_
+#endif  // RAYGEN_CAMERA_ORBIT_CAMERA_H_

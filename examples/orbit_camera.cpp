@@ -1,8 +1,8 @@
 #include <memory.h>
 #include <raylib.h>
 #include <raymath.h>
+#include <Raygen/Camera/orbit_camera.h>
 #include <cmath>
-#include "orbit_camera.h"
 
 int main(int argc, char* argv[]) {
   // Initialization
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
   while (!WindowShouldClose()) {
     // Update obit camera control
     // -----------------------------------------------------------------------------------
-    if (IsMouseButtonDown(1)) {
+    if (IsMouseButtonDown(0) && IsKeyDown(KEY_LEFT_ALT)) {
       Eigen::Vector2f newPos = Raygen::CastVec2_R2E(GetMousePosition());
       cursor_delta_pos = (newPos - cursorPos) * GetFrameTime();
     } else {

@@ -1,9 +1,14 @@
 message("Add Test")
 
 # include(CTest)
+macro(add_pass_test arg)
+  add_executable(${arg} ${arg}.cpp)
+  target_link_libraries(${arg} PRIVATE Raygen)
+  add_test(NAME ${arg}_test COMMAND ${arg})
+  set_property(TEST ${arg}_test PROPERTY PASS_REGULAR_EXPRESSION "pass")
+endmacro(add_pass_test arg)
 
-add_executable(polar_test polar_test.cpp)
-target_link_libraries(polar_test PRIVATE Raygen)
-add_test(NAME Polar_Angle_Test COMMAND polar_test)
-set_property(TEST Polar_Angle_Test PROPERTY PASS_REGULAR_EXPRESSION "pass")
+add_pass_test(polar_test)
+add_pass_test(color_test)
 
+#add_executable()

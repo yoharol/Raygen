@@ -1,5 +1,5 @@
-#ifndef RAYGEN_RANDOM_H_
-#define RAYGEN_RANDOM_H_
+#ifndef RAYGEN_MATH_RAYGEN_RANDOM_H_
+#define RAYGEN_MATH_RAYGEN_RANDOM_H_
 
 #include <random>
 
@@ -24,4 +24,4 @@ T random_real(T lb, T ub) {
 }
 
 }  // namespace Raygen
-#endif  //  RAYGEN_RANDOM_H_
+#endif  //  RAYGEN_MATH_RAYGEN_RANDOM_H_

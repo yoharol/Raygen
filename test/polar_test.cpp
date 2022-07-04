@@ -14,10 +14,10 @@ int main() {
     Eigen::Vector3f vec(x, y, z);
 
     float norm = vec.norm();
-    float phi = Raygen::PolarAnglePhi(vec);
-    float theta = Raygen::PloarAngleTheta(vec);
+    float phi = Raygen::polar_angle_phi(vec);
+    float theta = Raygen::polar_angle_theta(vec);
 
-    Eigen::Vector3f ans = Raygen::Vector3FromPolar(phi, theta) * norm;
+    Eigen::Vector3f ans = Raygen::vec3_from_polar(phi, theta) * norm;
     float error = (ans - vec).norm();
     if (error > 1e-3) {
       std::cout << "error on vector:\n"

@@ -22,10 +22,10 @@ class OrbitCameraControl {
   explicit OrbitCameraControl(const Camera3D& cam, float irot_speed = 6.f,
                               float imouse_wheel_speed = 1.f)
       : rot_speed(irot_speed * DEG2RAD), mouse_wheel_speed(imouse_wheel_speed) {
-    dir = CastVec3_R2E(cam.target) - CastVec3_R2E(cam.position);
+    dir = cast_vec3_r2e(cam.target) - cast_vec3_r2e(cam.position);
     cam_dist = dir.norm();
-    rot_angle = PolarAnglePhi(dir);
-    tilt_angle = PloarAngleTheta(dir);
+    rot_angle = polar_angle_phi(dir);
+    tilt_angle = polar_angle_theta(dir);
   }
 
   void update(Camera3D& cam, Eigen::Vector2f cursor_delta,
@@ -36,8 +36,8 @@ class OrbitCameraControl {
     if (tilt_angle < PI / 2 - tilt_limit) tilt_angle = PI / 2 - tilt_limit;
     cam_dist -= mouse_wheel;
     if (cam_dist < 1.f) cam_dist = 1.f;
-    dir = Vector3FromPolar(rot_angle, tilt_angle);
-    cam.position = CastVec3_E2R(CastVec3_R2E(cam.target) - dir * cam_dist);
+    dir = vec3_from_polar(rot_angle, tilt_angle);
+    cam.position = cast_vec3_e2r(cast_vec3_r2e(cam.target) - dir * cam_dist);
   }
 
   Eigen::Vector3f getForward() { return dir; }

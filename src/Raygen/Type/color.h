@@ -11,7 +11,7 @@ class Color4f {
   Color4f() { m_rgba(3) = 1.0f; }
   explicit Color4f(unsigned int hexcolor);
   explicit Color4f(Eigen::Vector4f rgba) : m_rgba(rgba) {}
-  explicit Color4f(const Color4f& copyfrom) : m_rgba(copyfrom.rgba()) {}
+  Color4f(const Color4f& copyfrom) : m_rgba(copyfrom.rgba()) {}
 
   inline Eigen::Vector4f rgba() const { return m_rgba; }
   inline Eigen::Vector3f rgb() const {
@@ -29,7 +29,7 @@ class Color4f {
                            static_cast<int>(m_rgba(2) * 255.0f));
   }
   inline float* data() { return m_rgba.data(); }
-  inline Color toColor() {
+  inline Color toColor() const {
     const Eigen::Vector4i m_rgbai = rgbai();
     auto convert = [](int x) { return static_cast<unsigned char>(x); };
     return Color{convert(m_rgbai(0)), convert(m_rgbai(1)), convert(m_rgbai(2)),

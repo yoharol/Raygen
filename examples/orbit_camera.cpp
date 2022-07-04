@@ -28,19 +28,19 @@ int main(int argc, char* argv[]) {
 
   Raygen::OrbitCameraControl orbit_control(orbitCam);
 
-  Eigen::Vector2f cursorPos = Raygen::CastVec2_R2E(GetMousePosition());
+  Eigen::Vector2f cursorPos = Raygen::cast_vec2_r2e(GetMousePosition());
   Eigen::Vector2f cursor_delta_pos;
 
   while (!WindowShouldClose()) {
     // Update obit camera control
     // -----------------------------------------------------------------------------------
     if (IsMouseButtonDown(0) && IsKeyDown(KEY_LEFT_ALT)) {
-      Eigen::Vector2f newPos = Raygen::CastVec2_R2E(GetMousePosition());
+      Eigen::Vector2f newPos = Raygen::cast_vec2_r2e(GetMousePosition());
       cursor_delta_pos = (newPos - cursorPos) * GetFrameTime();
     } else {
       cursor_delta_pos = Eigen::Vector2f::Zero();
     }
-    cursorPos = Raygen::CastVec2_R2E(GetMousePosition());
+    cursorPos = Raygen::cast_vec2_r2e(GetMousePosition());
 
     float mousewheel = GetMouseWheelMove();
 

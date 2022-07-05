@@ -8,6 +8,11 @@
 
 namespace Raygen {
 
+template <class T>
+const T& max(const T& a, const T& b) {
+  return (a < b) ? b : a;
+}
+
 inline Eigen::Vector2f rescale_vec2(Eigen::Vector2f pos, float scale_x,
                                     float scale_y) {
   return Eigen::Vector2f(pos(0) * scale_x, pos(1) * scale_y);

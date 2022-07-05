@@ -61,6 +61,22 @@ class d2array {
   inline int size_y() const { return _ny; }
 
   /**
+   * @brief set element (i,j) to value
+   */
+  inline void set(int i, int j, const T &value) {
+    assert(i >= 0 && i < _nx && j >= 0 && j < _ny);
+    assert(i + _nx * j < _nx * _ny);
+    _array[i + _nx * j] = value;
+    return;
+  }
+
+  inline T get(int i, int j) {
+    assert(i >= 0 && i < _nx && j >= 0 && j < _ny);
+    assert(i + _nx * j < _nx * _ny);
+    return _array[i + _nx * j];
+  }
+
+  /**
    * @brief get element (i,j) reference
    *
    * @param i width index

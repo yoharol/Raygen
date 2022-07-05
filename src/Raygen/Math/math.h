@@ -8,6 +8,11 @@
 
 namespace Raygen {
 
+inline Eigen::Vector2f rescale_vec2(Eigen::Vector2f pos, float scale_x,
+                                    float scale_y) {
+  return Eigen::Vector2f(pos(0) * scale_x, pos(1) * scale_y);
+}
+
 /**
  * @brief Convert raylib Vector3 to Eigen::Vector3f
  *

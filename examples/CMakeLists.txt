@@ -13,12 +13,5 @@ add_executable(mass_spring_parallel mass_spring_parallel.cpp)
 target_link_libraries(mass_spring_parallel PRIVATE Raygen)
 
 if(BUILD_ALEMBIC_EXAMPLES)
-  message("Add example 4: alembic modeling")
-  find_package(Imath)
-  find_package(Alembic)
-  add_executable(alembic_modeling alembic_modeling.cpp)
-  target_link_libraries(alembic_modeling PRIVATE
-    Raygen
-    Alembic::Alembic
-  )
+  add_subdirectory(alembic_examples)
 endif()

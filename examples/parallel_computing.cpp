@@ -10,7 +10,7 @@ using Raygen::parallel_for;
 using Raygen::parallel_for_2d;
 
 int main() {
-  printf("[testing parallel_for]");
+  printf("[ \t testing parallel_for \t ]\n");
   const int n = 50;
   const int k_debug = 10;
   std::vector<Eigen::Vector2f> eigen_list(50);
@@ -24,7 +24,7 @@ int main() {
     printf("%d : (%g, %g)\n", x, eigen_list[x](0), eigen_list[x](1));
   }
 
-  printf("[testing parallel for 2d]\n");
+  printf("[ \t testing parallel for 2d \t ]\n");
   const int width = 10;
   const int height = 10;
   Raygen::d2array<Eigen::Vector2f> array_2d(width, height);

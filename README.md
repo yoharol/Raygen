@@ -15,11 +15,11 @@ Aimming at rapid prototyping of interactive 3D scenes. Raygen is basically a too
 **Ex2. Parallel For Loop Utilization**
 ```c++
   for (int i = 0; i < size_long; i++) {
-    // unparalleled
+    // some unparalleled computation
   }
 
   Raygen::parallel_for(size_long, [&](const int i) {
-    // paralleled
+    // some paralleled computation
   });
 ```
 
@@ -30,4 +30,10 @@ Aimming at rapid prototyping of interactive 3D scenes. Raygen is basically a too
 
 **Ex3. Mass Spring Game**
 
+Click to add nodes to this mass string system.
+
 <img src="cover_img/example3.png" alt="ex3" width="300"/>
+
+**Ex4. Position Based Fluids**
+
+[TODO]

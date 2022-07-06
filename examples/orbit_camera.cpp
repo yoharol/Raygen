@@ -7,8 +7,8 @@
 int main(int argc, char* argv[]) {
   // Initialization
   //--------------------------------------------------------------------------------------
-  int screenWidth = 800;
-  int screenHeight = 800;
+  int screenWidth = 1024;
+  int screenHeight = 768;
   InitWindow(screenWidth, screenHeight,
              "raylib [camera] example - third person orbit camera");
   SetTargetFPS(60);
@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
   //--------------------------------------------------------------------------------------
   Camera3D orbitCam;
   orbitCam.fovy = 45;
-  orbitCam.target = Vector3{1, 0, 0};
+  orbitCam.target = Vector3{0, 0, 0};
   orbitCam.position = Vector3{0, 3, 5};
   orbitCam.up = Vector3{0, 1, 0};
 
@@ -53,21 +53,16 @@ int main(int argc, char* argv[]) {
     ClearBackground(RAYWHITE);
 
     BeginMode3D(orbitCam);
-    DrawPlane(Vector3{0, 0, 0}, Vector2{50, 50}, BLUE);  // simple world plane
-    float spacing = 3;
-    int count = 5;
+    // DrawPlane(Vector3{0, 0, 0}, Vector2{50, 50}, BLUE);  // simple world
+    // plane
 
-    for (float x = -count * spacing; x <= count * spacing; x += spacing) {
-      for (float z = -count * spacing; z <= count * spacing; z += spacing) {
-        DrawCubeTexture(tx, Vector3{x, 0.5f, z}, 1, 1, 1, WHITE);
-      }
-    }
+    DrawGrid(20, 1);
     DrawSphere(orbitCam.target, 0.25f, RED);
     EndMode3D();
 
-    DrawText("Right drag to rotate, Wheel to zoom", 100, 760, 20, GREEN);
+    DrawText("Right drag to rotate, Wheel to zoom", 10, 60, 20, GREEN);
 
-    DrawFPS(0, 0);
+    DrawFPS(10, 10);
     EndDrawing();
     //----------------------------------------------------------------------------------
   }

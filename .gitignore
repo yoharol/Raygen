@@ -1,4 +1,5 @@
 build/
+blender/
 CMakeCache.txt
 .idea
 .vscode

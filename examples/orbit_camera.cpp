@@ -2,6 +2,7 @@
 #include <raylib.h>
 #include <raymath.h>
 #include <Raygen/Camera/orbit_camera.h>
+#include <Raygen/input.h>
 #include <cmath>
 
 int main(int argc, char* argv[]) {
@@ -9,8 +10,7 @@ int main(int argc, char* argv[]) {
   //--------------------------------------------------------------------------------------
   int screenWidth = 1024;
   int screenHeight = 768;
-  InitWindow(screenWidth, screenHeight,
-             "raylib [camera] example - third person orbit camera");
+  InitWindow(screenWidth, screenHeight, "orbit camera");
   SetTargetFPS(60);
 
   // Create background image
@@ -28,19 +28,15 @@ int main(int argc, char* argv[]) {
 
   Raygen::OrbitCameraControl orbit_control(orbitCam);
 
-  Eigen::Vector2f cursorPos = Raygen::cast_vec2_r2e(GetMousePosition());
-  Eigen::Vector2f cursor_delta_pos;
-
   while (!WindowShouldClose()) {
     // Update obit camera control
     // -----------------------------------------------------------------------------------
+    Eigen::Vector2f cursor_delta_pos;
     if (IsMouseButtonDown(0) && IsKeyDown(KEY_LEFT_ALT)) {
-      Eigen::Vector2f newPos = Raygen::cast_vec2_r2e(GetMousePosition());
-      cursor_delta_pos = (newPos - cursorPos) * GetFrameTime();
+      cursor_delta_pos = Raygen::get_mouse_delta() * GetFrameTime();
     } else {
       cursor_delta_pos = Eigen::Vector2f::Zero();
     }
-    cursorPos = Raygen::cast_vec2_r2e(GetMousePosition());
 
     float mousewheel = GetMouseWheelMove();
 

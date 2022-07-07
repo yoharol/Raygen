@@ -12,6 +12,10 @@ message("Add example 3: Mass string game")
 add_executable(mass_spring_parallel mass_spring_parallel.cpp)
 target_link_libraries(mass_spring_parallel PRIVATE Raygen)
 
+message("Add example 4: Obj show")
+add_executable(obj_show obj_show.cpp)
+target_link_libraries(obj_show PRIVATE Raygen)
+
 if(BUILD_ALEMBIC_EXAMPLES)
   add_subdirectory(alembic_examples)
 endif()

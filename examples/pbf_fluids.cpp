@@ -51,10 +51,19 @@ public:
     }
 
 private:
-    unsigned int get_grid_index(const GridPos& grid_pos)
+    inline unsigned int get_grid_index(const GridPos& grid_pos)
     {
         return grid_pos(0) + grid_pos(1) * n_x + grid_pos(2) * n_x * n_y;
     }
+
+    template <typename T> bool in_range(T a, T b, T value) { return a <= value && value <= b; }
+
+    inline bool in_grid(const GridPos& grid_pos)
+    {
+        return in_range<int>(0, n_x - 1, grid_pos(0)) && in_range<int>(0, n_y - 1, grid_pos(1)) &&
+               in_range<int>(0, n_z - 1, grid_pos(2));
+    }
+
     GridPos get_grid_pos(const VEC3& pos)
     {
         VEC3 rel_pos = (pos - m_grid_base) / m_cell_size;
@@ -78,13 +87,18 @@ private:
         const int range = static_cast<int>(radius / m_cell_size) + 1;
 
         for (int i = 0; i < n; i++) {
+            printf("%d ", i);
             const GridPos grid_pos = get_grid_pos(m_particles[i].x);
             for (int x = -range; x <= range; x++)
                 for (int y = -range; y <= range; y++)
                     for (int z = -range; z <= range; z++) {
-                        const int   i_x        = grid_pos(0) + x;
-                        const int   i_y        = grid_pos(1) + y;
-                        const int   i_z        = grid_pos(2) + z;
+                        const int i_x          = grid_pos(0) + x;
+                        const int i_y          = grid_pos(1) + y;
+                        const int i_z          = grid_pos(2) + z;
+                        GridPos   tmp_grid_pos = GridPos(i_x, i_y, i_z);
+                        if (!in_grid(tmp_grid_pos))
+                            continue;
+
                         const int   cell_index = get_grid_index(GridPos(i_x, i_y, i_z));
                         const auto& list       = cell_particles[cell_index];
 
@@ -109,14 +123,14 @@ int main()
 {
     std::vector<Particle> particles;
     constexpr SCALAR      dt               = 0.016f;
-    constexpr int         num_particles    = 100000;
+    constexpr int         num_particles    = 100;
     constexpr SCALAR      total_mass       = 3000.0f;
     constexpr SCALAR      container_width  = 1.0f;
     constexpr SCALAR      container_height = 2.0f;
     constexpr SCALAR      container_length = 3.0f;
     constexpr Vector3     container_pos{-container_width / 2, 0, -container_length / 2};
     constexpr Vector3     container_center{0, container_height / 2.f, 0};
-    constexpr SCALAR      radius = 0.015f;
+    constexpr SCALAR      radius = 0.010f;
 
     particles.resize(num_particles);
     for (int i = 0; i < num_particles; i++) {
@@ -128,18 +142,20 @@ int main()
         particles[i].v = VEC3::Zero();
     }
 
-    /*constexpr SCALAR            cell_size = 0.02f;
-    constexpr int               n_x       = container_width / cell_size;
-    constexpr int               n_y       = container_height / cell_size;
-    constexpr int               n_z       = container_length / cell_size;
+    constexpr SCALAR cell_size = 0.05f;
+    constexpr int    n_x       = container_width / cell_size;
+    constexpr int    n_y       = container_height / cell_size;
+    constexpr int    n_z       = container_length / cell_size;
+    printf("Generating a 3D grid %dx%dx%d\n", n_x, n_y, n_z);
+
     ParticleGrid<n_x, n_y, n_z> particle_grid(cell_size, particles);
-    particle_grid.update_neighbor_list(radius);*/
+    particle_grid.update_neighbor_list(radius);
 
     constexpr int width  = 1024;
     constexpr int height = 768;
     SetConfigFlags(FLAG_MSAA_4X_HINT);
     SetTargetFPS(60);
-    InitWindow(width, height, "SPH Fluids");
+    InitWindow(width, height, "Position Based Fluids");
 
     Camera3D camera;
     camera.fovy     = 45;

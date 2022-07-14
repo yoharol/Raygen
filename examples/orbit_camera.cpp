@@ -25,6 +25,7 @@ int main(int argc, char* argv[]) {
   orbitCam.target = Vector3{0, 0, 0};
   orbitCam.position = Vector3{0, 3, 5};
   orbitCam.up = Vector3{0, 1, 0};
+  orbitCam.projection = CAMERA_PERSPECTIVE;
 
   Raygen::OrbitCameraControl orbit_control(orbitCam);
 

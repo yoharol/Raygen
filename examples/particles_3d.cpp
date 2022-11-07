@@ -21,9 +21,9 @@ int main(void)
 
     // Define the camera to look into our 3d world
     Camera camera     = {0};
-    camera.position   = (Vector3){-125.0f, 125.0f, -125.0f};
-    camera.target     = (Vector3){0.0f, 0.0f, 0.0f};
-    camera.up         = (Vector3){0.0f, 1.0f, 0.0f};
+    camera.position   = Vector3{-125.0f, 125.0f, -125.0f};
+    camera.target     = Vector3{0.0f, 0.0f, 0.0f};
+    camera.up         = Vector3{0.0f, 1.0f, 0.0f};
     camera.fovy       = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;
 
@@ -40,7 +40,7 @@ int main(void)
                                              (float)GetRandomValue(-50, 50),
                                              (float)GetRandomValue(-50, 50));
         Vector3 axis        = Vector3Normalize(
-            (Vector3){(float)GetRandomValue(0, 360), (float)GetRandomValue(0, 360), (float)GetRandomValue(0, 360)});
+            Vector3{(float)GetRandomValue(0, 360), (float)GetRandomValue(0, 360), (float)GetRandomValue(0, 360)});
         float  angle    = (float)GetRandomValue(0, 10) * DEG2RAD;
         Matrix rotation = MatrixRotate(axis, angle);
 
@@ -59,7 +59,8 @@ int main(void)
 
     // Set shader value: ambient light level
     int ambientLoc = GetShaderLocation(shader, "ambient");
-    SetShaderValue(shader, ambientLoc, (float[4]){0.2f, 0.2f, 0.2f, 1.0f}, SHADER_UNIFORM_VEC4);
+    using f4array  = float[4];
+    SetShaderValue(shader, ambientLoc, f4array{0.2f, 0.2f, 0.2f, 1.0f}, SHADER_UNIFORM_VEC4);
 
     // NOTE: We are assigning the intancing shader to material.shader
     // to be used on mesh drawing with DrawMeshInstanced()

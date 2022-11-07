@@ -25,7 +25,7 @@ set(Raygen_libs
 )
 
 option(BUILD_EXAMPLES "Build the examples" ON)
-option(BUILD_ALEMBIC_EXAMPLES "Build the alembic examples" ON)
+option(BUILD_ALEMBIC_EXAMPLES "Build the alembic examples" OFF)
 if(BUILD_EXAMPLES)
   add_subdirectory(examples)
 endif()
